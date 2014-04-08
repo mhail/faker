@@ -27,15 +27,6 @@ Target "BuildTest" (fun _ ->
       |> Log "TestBuild-Output: "
 )
 
-//Target "RestoreNUnit" (fun _ ->
-//  RestorePackageId (fun p ->
-//   {p with
-//      OutputPath = "./tools/Nunit"
-//      ExcludeVersion = true
-//   }
-//  ) "NUnit.Runners"
-//)
-
 Target "Test" (fun _ ->
     !! (testDir + "/NUnit.Test.*.dll")
       |> NUnit (fun p ->
@@ -55,7 +46,6 @@ Target "Default" (fun _ ->
   ==> "BuildApp"
   ==> "BuildTest"
   ==> "Test"
-//    ==> "RestoreNUnit"
   ==> "Default"
 
 // start build
